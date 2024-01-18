@@ -39,4 +39,22 @@ class EntityController extends AbstractController
     public function show():Response{
         return $this->render('entity/show.html.twig', ['entity'=>$this->getUser()->getEntity()]);
     }
+
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/entity/weapons')]
+    public function weapons():Response{
+        return $this->render('entity/weapons.html.twig', ['entity'=>$this->getUser()->getEntity()]);
+    }
+
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/entity/spells')]
+    public function spells():Response{
+        return $this->render('entity/spells.html.twig', ['entity'=>$this->getUser()->getEntity()]);
+    }
+
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/entity/gear')]
+    public function gear():Response{
+        return $this->render('entity/gear.html.twig', ['entity'=>$this->getUser()->getEntity()]);
+    }
 }

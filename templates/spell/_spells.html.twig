@@ -12,10 +12,16 @@
                 <li class="list-group-item">Points de dégats : {{ spell.damage }}</li>
                 <li class="list-group-item">Portée de du sort : {{ spell.spellRange }}</li>
                 <li class="list-group-item">Quatité de mana consommée par utilisation : {{ spell.manaAmount }}</li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="list-group-item">Entité possédant le sort : {{ spell.entity.firstname }} {{ spell.entity.lastname }}</li>
+                {% endif %}
+
             </ul>
-            <div class="card-body">
-                <a href="{{ path("app_spell_update", {id:spell.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier le sort</a>
-            </div>
+            {% if is_granted("ROLE_ADMIN") %}
+                <div class="card-body">
+                    <a href="{{ path("app_weapon_update", {id:weapon.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier le sort</a>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
 </div>
