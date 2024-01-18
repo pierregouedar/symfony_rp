@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+<h3>Détails de l'arme</h3>
+{{ form_row(form.type, {label:"Type de l'arme (arc, pistolet, épée...)"}) }}
+{{ form_row(form.name, {label:"Nom de l'arme"}) }}
+{{ form_row(form.description, {label:"Description de l'arme"}) }}
+{{ form_row(form.damage, {label:"Nombre de points de dégats de l'arme"}) }}
+{{ form_row(form.weaponRange, {label:"Portée de l'arme"}) }}
+{{ form_row(form.capacity, {label:"Capacité de l'arme (Nombre de flèche, balles...)"}) }}
+<h3>A quelle entité cette arme doit être lié ?</h3>
+{{ form_row(form.entity, {label:"Prénom de l'entité à laquelle appartient cette arme"}) }}
+    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="{{ submit_label ?? "Créer l'arme"}}" />
+{{ form_end(form) }}

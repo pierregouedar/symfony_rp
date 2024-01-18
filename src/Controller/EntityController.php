@@ -26,12 +26,17 @@ class EntityController extends AbstractController
                 $entityManager->persist($entity);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('app_home');
+                return $this->redirectToRoute('app_guide');
             }
 
             return $this->render('entity/create.html.twig', ['form' => $form]);
         }
         return $this->redirectToRoute('app_home');
+    }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/entity/show')]
+    public function show():Response{
+        return $this->render('entity/show.html.twig', ['entity'=>$this->getUser()->getEntity()]);
     }
 }

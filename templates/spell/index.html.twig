@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SpellController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Caillou/Desktop/symfony-rp/src/Controller/SpellController.php'|file_link(0) }}">src/Controller/SpellController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Caillou/Desktop/symfony-rp/templates/spell/index.html.twig'|file_link(0) }}">templates/spell/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1 class="text-center">Gestion des sorts</h1>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success" href="{{ path("app_spell_create") }}">Ajouter un nouveau sort à la liste</a>
+    </div>
+    {% if spells is not empty %}
+            <h3 class="text-center mt-3">Liste de tous les sorts de la base de données</h3>
+            {% include "spell/_spells.html.twig" %}
+    {% else %}
+        <h3>Aucun sort n'est disponible pour le moment.</h3>
+    {% endif %}
 {% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

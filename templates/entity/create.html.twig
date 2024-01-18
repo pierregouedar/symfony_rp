@@ -2,7 +2,11 @@
 
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
+{% block title %}
+    Création d'une entité
+{% endblock %}
+
 {% block body %}
-    <h1>Création d'une nouvelle entité</h1>
+    <h1 class="text-center">Création d'une nouvelle entité</h1>
     {{ include('entity/_form.html.twig', {form:form} ) }}
 {% endblock %}

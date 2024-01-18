@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center">
+    {% for spell in spells %}
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-header">
+                {{ spell.damageType }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ spell.name }}</h5>
+                <p class="card-text">{{ spell.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Points de dégats : {{ spell.damage }}</li>
+                <li class="list-group-item">Portée de du sort : {{ spell.spellRange }}</li>
+                <li class="list-group-item">Quatité de mana consommée par utilisation : {{ spell.manaAmount }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="{{ path("app_spell_update", {id:spell.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier le sort</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

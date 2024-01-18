@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}
+    Édition de {{ weapon.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>Édition de {{ weapon.name }}</h1>
+    {{ include('weapon/_form.html.twig', {submit_label: 'Modifier  ', form:form}, with_context = false ) }}
+{% endblock %}

@@ -1,3 +1,22 @@
+<h3 class="mt-3">Description de l'entité :</h3>
 {{ form_start(form) }}
-    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="Créer" />
+{{ form_row(form.firstname, {label:"Prénom"}) }}
+{{ form_row(form.lastname, {label:"Nom de famille"}) }}
+{{ form_row(form.race, {label:"Race de l'entité"}) }}
+{{ form_row(form.class, {label:"Classe de l'entité"}) }}
+{{ form_row(form.story, {label:"Histoire de l'entité"}) }}
+{{ form_row(form.personnalGoals, {label:"Objectifs personnels de l'entité"}) }}
+{{ form_row(form.personality, {label:"Description de la personnalité de l'entité"}) }}
+{{ form_row(form.advantages, {label:"Atouts de l'entité"}) }}
+{{ form_row(form.penalty, {label:"Malus de l'entité"}) }}
+<h3 class="mt-3">Stats de l'entité :</h3>
+{{ form_row(form.hp, {label:"Nombre de points de vie"}) }}
+{{ form_row(form.dexterity, {label:"Nombre de points de dextérité"}) }}
+{{ form_row(form.strength, {label:"Nombre de points de force"}) }}
+{{ form_row(form.constitution, {label:"Nombre de points de constitution"}) }}
+{{ form_row(form.intelligence, {label:"Nombre de points d'intelligence"}) }}
+{{ form_row(form.wisdom, {label:"Nombre de points de sagesse"}) }}
+{{ form_row(form.charisma, {label:"Nombre de points de charisme"}) }}
+{{ form_row(form.mana, {label:"Nombre de points de mana (peut être vide)"}) }}
+    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="Créer l'entité" />
 {{ form_end(form) }}

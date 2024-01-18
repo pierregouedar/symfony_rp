@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center">
+    {% for weapon in weapons %}
+    <div class="card m-3" style="width: 18rem;">
+        <div class="card-header">
+            {{ weapon.type }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ weapon.name }}</h5>
+            <p class="card-text">{{ weapon.description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Points de dégats : {{ weapon.damage }}</li>
+            <li class="list-group-item">Portée de l'arme : {{ weapon.weaponRange }}</li>
+            <li class="list-group-item">Capacité de l'arme : {{ weapon.capacity }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{{ path("app_weapon_update", {id:weapon.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier l'arme</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>

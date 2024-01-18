@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}
+    Édition de {{ spell.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>Édition de {{ spell.name }}</h1>
+    {{ include('spell/_form.html.twig', {submit_label: 'Modifier  ', form:form}, with_context = false ) }}
+{% endblock %}

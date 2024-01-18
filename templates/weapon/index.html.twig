@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WeaponController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Caillou/Desktop/symfony-rp/src/Controller/WeaponController.php'|file_link(0) }}">src/Controller/WeaponController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Caillou/Desktop/symfony-rp/templates/weapon/index.html.twig'|file_link(0) }}">templates/weapon/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1 class="text-center">Gestion des armes</h1>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-success" href="{{ path("app_weapon_create") }}">Ajouter une nouvelle arme à la liste</a>
+    </div>
+    {% if weapons is not empty %}
+            <h3 class="text-center mt-3">Liste des armes disponibles</h3>
+            {% include "weapon/_weapons.html.twig" %}
+    {% else %}
+        <h3>Aucune arme n'est disponible pour le moment. Veuillez contacter un administrateur</h3>
+    {% endif %}
 {% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

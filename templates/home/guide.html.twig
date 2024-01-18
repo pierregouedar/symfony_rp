@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Guide de première connexion</h1>
+    <h1 class="text-center">Guide de première connexion</h1>
     {% if app.user.entity == null %}
-        <a class="btn btn-primary" href="{{ path('app_entity_create') }}">Créer votre entité</a>
+        <p class="text-center">Texte guide 1</p>
+        <a class="btn btn-primary w-100" href="{{ path('app_entity_create') }}">Créer votre entité</a>
     {% else %}
         {% if app.user.entity.spells is empty and app.user.entity.weapons is empty %}
-            <h3>Etat actuel : Aucun sort ni arme</h3>
-            <a class="btn btn-primary" href="{{ path('app_weapon_create') }}">Ajouter votre première arme</a>
+            <p class="text-center">Text 2 guide : entité créée</p>
+            <h3 class="text-center">Etat actuel : Aucun sort ni arme</h3>
+            <a class="btn btn-primary" href="{{ path('app_weapon_index') }}">Ajouter votre première arme</a>
             ou
-            <a class="btn btn-primary" href="{{ path('app_spell_create') }}">Ajouter votre premier sort</a>
+            <a class="btn btn-primary" href="{{ path('app_spell_index') }}">Ajouter votre premier sort</a>
         {% elseif app.user.entity.spells is empty and app.user.entity.weapons is not empty %}
             <h3>Etat actuel : arme détectée, aucun sort possible</h3>
             <a class="btn btn-primary" href="{{ path('app_weapon_create') }}">Ajouter une autre arme</a>
@@ -20,7 +22,6 @@
         <a class="btn btn-primary" href="{{ path('app_gear_create') }}">Ajouter une pièce d'équipement</a>
     {% endif %}
 {% endblock %}
-
 {% block title %}
 
 {% endblock %}
