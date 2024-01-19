@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EntityRepository::class)]
@@ -78,12 +79,22 @@ class Entity
     #[ORM\Column(nullable: true)]
     private ?int $mana = null;
 
+    #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'entities')]
+    private Collection $events;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nickname = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Picture $picture = null;
+
 
     public function __construct()
     {
         $this->weapons = new ArrayCollection();
         $this->spells = new ArrayCollection();
         $this->gears = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -414,6 +425,57 @@ class Entity
     public function setMana(?int $mana): static
     {
         $this->mana = $mana;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): static
+    {
+        if (!$this->events->contains($event)) {
+            $this->events->add($event);
+            $event->addEntity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): static
+    {
+        if ($this->events->removeElement($event)) {
+            $event->removeEntity($this);
+        }
+
+        return $this;
+    }
+
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(string $nickname): static
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    public function getPicture(): ?picture
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?picture $picture): static
+    {
+        $this->picture = $picture;
 
         return $this;
     }

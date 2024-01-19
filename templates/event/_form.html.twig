@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+<h3 class="mt-3">Détails de l'événement</h3>
+{{ form_row(form.name, {label:"Nom de l'événement"}) }}
+{{ form_row(form.description, {label:"Description de l'événement"}) }}
+<h3 class="mt-3">Sélection des entités</h3>
+{{ form_row(form.entities, {label:"Entité(s) participant à l'événement"}) }}
+    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="Créer l'événement" />
+{{ form_end(form) }}

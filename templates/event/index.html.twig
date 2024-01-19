@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Historique de tous les événements du JDR</h1>
+    {% if events is not empty %}
+        {% include "event/_events.html.twig" %}
+    {% else %}
+        <h3 class="text-center mt-3">Aucun événements disponibles.</h3>
+    {% endif %}
+{% endblock %}

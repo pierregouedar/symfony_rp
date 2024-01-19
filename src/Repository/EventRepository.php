@@ -2,35 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Entity;
+use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Entity>
+ * @extends ServiceEntityRepository<Event>
  *
- * @method Entity|null find($id, $lockMode = null, $lockVersion = null)
- * @method Entity|null findOneBy(array $criteria, array $orderBy = null)
- * @method Entity[]    findAll()
- * @method Entity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Event|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Event|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Event[]    findAll()
+ * @method Event[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EntityRepository extends ServiceEntityRepository
+class EventRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Entity::class);
-    }
-
-    public function findById($id){
-        return $this->createQueryBuilder('e')
-            ->where("e.id = :id")
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getResult();
+        parent::__construct($registry, Event::class);
     }
 
 //    /**
-//     * @return Entity[] Returns an array of Entity objects
+//     * @return Event[] Returns an array of Event objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -44,7 +36,7 @@ class EntityRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Entity
+//    public function findOneBySomeField($value): ?Event
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>WIP</h1>
+    <h1 class="text-center">Liste des sort en possession de votre entité</h1>
+    {% include 'spell/_spells.html.twig' with {spells:entity.spells} %}
 {% endblock %}
 

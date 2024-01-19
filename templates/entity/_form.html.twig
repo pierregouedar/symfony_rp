@@ -2,6 +2,7 @@
 {{ form_start(form) }}
 {{ form_row(form.firstname, {label:"Prénom"}) }}
 {{ form_row(form.lastname, {label:"Nom de famille"}) }}
+{{ form_row(form.nickname, {label:"Surnom"}) }}
 {{ form_row(form.race, {label:"Race de l'entité"}) }}
 {{ form_row(form.class, {label:"Classe de l'entité"}) }}
 {{ form_row(form.story, {label:"Histoire de l'entité"}) }}
@@ -18,5 +19,6 @@
 {{ form_row(form.wisdom, {label:"Nombre de points de sagesse"}) }}
 {{ form_row(form.charisma, {label:"Nombre de points de charisme"}) }}
 {{ form_row(form.mana, {label:"Nombre de points de mana (peut être vide)"}) }}
-    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="Créer l'entité" />
+{{ form_row(form.picture, {label:"Image de l'entité (peut être vide)"}) }}
+    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="{{ submit_label ?? "Créer l'entité" }}" />
 {{ form_end(form) }}

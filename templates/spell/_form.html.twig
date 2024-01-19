@@ -1,4 +1,5 @@
 {{ form_start(form) }}
+<h3>Détails du sort</h3>
 {{ form_row(form.damageType, {label:"Type de dégats du sort (feu, eau, électricité...)"}) }}
 {{ form_row(form.name, {label:"Nom du sort"}) }}
 {{ form_row(form.description, {label:"Description du sort"}) }}
@@ -6,6 +7,6 @@
 {{ form_row(form.spellRange, {label:"Portée du sort"}) }}
 {{ form_row(form.manaAmount, {label:"Nombre de points de mana consommés par utilisation"}) }}
 <h3>A quelle entité ce sort doit être lié ?</h3>
-{{ form_row(form.entity, {label:"Prénom de l'entité à laquelle appartient cette arme"}) }}
+{{ form_row(form.entity, {label:"Prénom de l'entité à laquelle appartient ce sort"}) }}
     <input type="submit" class="w-100 d-inline-block btn btn-primary" value="{{ submit_label ?? "Créer le sort"}}" />
 {{ form_end(form) }}

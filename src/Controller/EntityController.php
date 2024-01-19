@@ -3,7 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Entity;
+use App\Entity\Picture;
+use App\Entity\Weapon;
 use App\Form\EntityFormType;
+use App\Form\WeaponFormType;
+use App\Repository\EntityRepository;
+use App\Repository\GearRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +27,12 @@ class EntityController extends AbstractController
             $form = $this->createForm(EntityFormType::class, $entity);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
+                if (null !== $form->get('picture')->getData()) {
+                    $picture = new Picture();
+                    $picture->setPicture(file_get_contents($form->get('picture')->getData()));
+                    $entityManager->persist($picture);
+                    $entity->setPicture($picture);
+                }
                 $this->getUser()->setEntity($entity); // Ajoute l'entité à l'utilisateur connecté
                 $entityManager->persist($entity);
                 $entityManager->flush();
@@ -34,10 +45,34 @@ class EntityController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/entity')]
+    public function index(EntityRepository $entityRepository):Response{
+        $entities = $entityRepository->findAll();
+        return $this->render('entity/index.html.twig', ['entities'=>$entities]);
+    }
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/entity/{id}/update', requirements: ['id' => '\d+'])]
+    public function update(EntityManagerInterface $entityManager, Entity $entity, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse|Response
+    {
+        $form = $this->createForm(EntityFormType::class, $entity);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_entity_index');
+        }
+
+        return $this->render('entity/update.html.twig', ['entity' => $entity, 'form' => $form]);
+    }
+
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    #[Route('/entity/show')]
-    public function show():Response{
-        return $this->render('entity/show.html.twig', ['entity'=>$this->getUser()->getEntity()]);
+    #[Route('/entity/{id}/show', requirements: ['id' => '\d+'])]
+    public function show(int $id, EntityRepository $entityRepository):Response{
+        if ($id == $this->getUser()->getEntity()->getId() or $this->getUser()->getRoles()[0]=="ROLE_ADMIN"){
+            return $this->render('entity/show.html.twig', ['entity'=>$entityRepository->findById($id)[0]]);
+        }
+        return $this->redirectToRoute('app_guide');
     }
 
     #[IsGranted('IS_AUTHENTICATED_FULLY')]

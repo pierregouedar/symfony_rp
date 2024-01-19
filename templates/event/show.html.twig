@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Résultat de votre nouvel événement</h1>
+    <h4 class="text-center mt-5">
+        L'événement {{ event.name }}
+        {% if event.entities|length == 1 %}
+        avec l'entité {{ event.entities[0].firstname }}
+        {% else %}
+        entre les entités {% for entity in event.entities %}{{ entity.firstname }}, {% endfor %}
+        {% endif %}
+        a une probabilité de
+    </h4>
+    <h1 class="text-center">{{ event.result }}</h1>
+    <h4 class="text-center">/20 de réussir</h4>
+    <div class="d-flex justify-content-center mt-3">
+        <a class="btn btn-primary" href="{{ path('app_event_index') }}">Revenir à l'historique des événement</a>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

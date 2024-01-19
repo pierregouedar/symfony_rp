@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
-{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block title %}
-
+    Édition de {{ gear.name }}
 {% endblock %}
 
+{% block body %}
+    <h1>Édition de {{ gear.name }}</h1>
+    {{ include('gear/_form.html.twig', {submit_label: 'Modifier  ', form:form}, with_context = false ) }}
+{% endblock %}

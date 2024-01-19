@@ -10,9 +10,11 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class EntityFormType extends AbstractType
 {
@@ -21,6 +23,7 @@ class EntityFormType extends AbstractType
         $builder
             ->add('firstname')
             ->add('lastname')
+            ->add('nickname')
             ->add('race')
             ->add('class')
             ->add('personnalGoals')
@@ -35,7 +38,19 @@ class EntityFormType extends AbstractType
             ->add('intelligence')
             ->add('wisdom')
             ->add('charisma')
-            ->add('mana');
+            ->add('mana')
+            ->add('picture', FileType::class, [
+                'data_class' => null,
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '4196k',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                        ]]),
+                ]]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

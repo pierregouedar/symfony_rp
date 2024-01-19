@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>WIP</h1>
+    <h1 class="text-center">Liste des armes en possession de votre entité</h1>
+    {% include 'weapon/_weapons.html.twig' with {weapons:entity.weapons} %}
 {% endblock %}
 

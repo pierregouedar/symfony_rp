@@ -1,10 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>WIP</h1>
+    <h1 class="text-center mb-5">Fiche de votre entité {{ entity.firstname }} {{ entity.lastname }}</h1>
+    {% set image = entity.picture.picture|default(null) %}
+    {% if image is not null %}
+        <div class="d-flex justify-content-center">
+            <img src="{{ image }}" height="256" width="256" alt="">
+        </div>
+        <p class="text-center">Image de votre entité</p>
+    {% endif %}
+    <div class="d-flex justify-content-center">
+        <dl class="m-5">
+            <h2 class="text-center mb-3">Détails</h2>
+            <dt>Prénom :</dt>
+            <dd>{{ entity.firstname }}</dd>
+            <dt>Nom de famille :</dt>
+            <dd>{{ entity.lastname }}</dd>
+            <dt>Surnom :</dt>
+            <dd>{{ entity.nickname }}</dd>
+            <dt>Race :</dt>
+            <dd>{{ entity.race }}</dd>
+            <dt>Classe :</dt>
+            <dd>{{ entity.class }}</dd>
+            <dt>Objectifs personnels :</dt>
+            <dd>{{ entity.personnalGoals }}</dd>
+            <dt>Histoire :</dt>
+            <dd>{{ entity.story }}</dd>
+            <dt>Personnalité :</dt>
+            <dd>{{ entity.personality }}</dd>
+            <dt>Avantages :</dt>
+            <dd>{{ entity.advantages }}</dd>
+            <dt>Malus :</dt>
+            <dd>{{ entity.penalty }}</dd>
+        </dl>
+
+        <dl class="m-5">
+            <h2 class="text-center mb-3">Stats</h2>
+            <dt>Points de vie :</dt>
+            <dd>{{ entity.hp }}</dd>
+            <dt>Points de force :</dt>
+            <dd>{{ entity.strength }}</dd>
+            <dt>Points de dextérité :</dt>
+            <dd>{{ entity.dexterity }}</dd>
+            <dt>Points de constitution :</dt>
+            <dd>{{ entity.constitution }}</dd>
+            <dt>Points d'intelligence :</dt>
+            <dd>{{ entity.intelligence }}</dd>
+            <dt>Points de sagesse :</dt>
+            <dd>{{ entity.wisdom }}</dd>
+            <dt>Points de charisme :</dt>
+            <dd>{{ entity.charisma }}</dd>
+            <dt>Points de mana :</dt>
+            <dd>{{ entity.mana ?? 0}}</dd>
+        </dl>
+    </div>
 {% endblock %}
 
 {% block title %}
     Fiche de {{ entity.firstname }} {{ entity.lastname }}
+
 {% endblock %}
 

@@ -19,7 +19,7 @@
             </ul>
             {% if is_granted("ROLE_ADMIN") %}
                 <div class="card-body">
-                    <a href="{{ path("app_weapon_update", {id:weapon.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier le sort</a>
+                    <a href="{{ path("app_spell_update", {id:spell.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier le sort</a>
                 </div>
             {% endif %}
         </div>

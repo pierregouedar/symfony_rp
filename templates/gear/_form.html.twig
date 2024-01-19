@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+<h3>Détails de l'arme</h3>
+{{ form_row(form.type, {label:"Type du morceau d'équipement (casque, jambières...)"}) }}
+{{ form_row(form.name, {label:"Nom du morceau d'équipement"}) }}
+{{ form_row(form.description, {label:"Description du morceau d'équipement"}) }}
+{{ form_row(form.defStat, {label:"Nombre de points de défense du morceau d'équipement"}) }}
+<h3>A quelle entité ce morceau d'équipement doit être lié ?</h3>
+{{ form_row(form.entity, {label:"Prénom de l'entité à laquelle appartient cette arme"}) }}
+    <input type="submit" class="w-100 d-inline-block btn btn-primary" value="{{ submit_label ?? "Créer le morceau d'équipement" }}" />
+{{ form_end(form) }}

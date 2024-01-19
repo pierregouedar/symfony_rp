@@ -1,0 +1,25 @@
+<div class="container d-flex justify-content-center">
+    {% for gear in gears %}
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-header">
+                {{ gear.type }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ gear.name }}</h5>
+                <p class="card-text">{{ gear.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Nombre de points de défense : {{ gear.defStat }}</li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="list-group-item">Entité possédant le morceau d'équipement : {{ gear.entity.firstname }} {{ gear.entity.lastname }}</li>
+                {% endif %}
+
+            </ul>
+            {% if is_granted("ROLE_ADMIN") %}
+                <div class="card-body">
+                    <a href="{{ path("app_gear_update", {id:gear.id, submit_label:"Modifier"}) }}" class="btn btn-warning w-100 mt-2">Modifier le morceau d'équipement</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
