@@ -88,6 +88,9 @@ class Entity
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Picture $picture = null;
 
+    #[ORM\Column]
+    private ?int $maxHp = null;
+
 
     public function __construct()
     {
@@ -476,6 +479,18 @@ class Entity
     public function setPicture(?picture $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getMaxHp(): ?int
+    {
+        return $this->maxHp;
+    }
+
+    public function setMaxHp(int $maxHp): static
+    {
+        $this->maxHp = $maxHp;
 
         return $this;
     }

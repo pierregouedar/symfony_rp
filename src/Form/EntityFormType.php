@@ -31,7 +31,7 @@ class EntityFormType extends AbstractType
             ->add('personality')
             ->add('advantages')
             ->add('penalty')
-            ->add('hp')
+            ->add('maxHp')
             ->add('strength')
             ->add('dexterity')
             ->add('constitution')

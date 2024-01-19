@@ -34,6 +34,7 @@ class EntityController extends AbstractController
                     $entity->setPicture($picture);
                 }
                 $this->getUser()->setEntity($entity); // Ajoute l'entité à l'utilisateur connecté
+                $entity->setHp($entity->getmaxHp());
                 $entityManager->persist($entity);
                 $entityManager->flush();
 
@@ -58,6 +59,20 @@ class EntityController extends AbstractController
         $form = $this->createForm(EntityFormType::class, $entity);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if (null === $entity->getPicture()) {
+                if (null !== $form->get('picture')->getData()) {
+                    $image = new Picture();
+                    $entity->setPicture($image);
+                    $image->setPicture(file_get_contents($form->get('picture')->getData()));
+                    $entityManager->persist($image);
+                }
+            } else {
+                $image = $entity->getPicture();
+                $entityManager->persist($image);
+            }
+            if ($entity->getHp() > $entity->getMaxHp()){
+                $entity->setHp($entity->getmaxHp());
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_entity_index');
